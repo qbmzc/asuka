@@ -1,0 +1,10 @@
+server:
+  port: 12002
+spring:
+  application:
+    name: asuka-service
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:12000/eureka

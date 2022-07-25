@@ -1,0 +1,12 @@
+server:
+  port: 12000
+spring:
+  application:
+    name: auska-eureka
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:12000/eureka
+    fetch-registry: false
+    register-with-eureka: false
+

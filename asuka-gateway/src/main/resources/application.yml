@@ -1,0 +1,17 @@
+server:
+  port: 12001
+spring:
+  application:
+    name: asuka-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: route_asuka_service
+          uri: lb://asuka-service/
+          predicates:
+          - Path=/asuka/**
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:12000/eureka
