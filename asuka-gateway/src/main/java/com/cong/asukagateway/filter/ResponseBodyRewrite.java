@@ -1,5 +1,6 @@
 package com.cong.asukagateway.filter;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
@@ -27,15 +28,21 @@ public class ResponseBodyRewrite implements RewriteFunction<String,String> {
     @Override
     public Publisher<String> apply(ServerWebExchange exchange, String s) {
         try {
+            log.info("s===========>{}",s);
             ServerHttpResponse response = exchange.getResponse();
             MediaType mediaType = response.getHeaders().getContentType();
             if (mediaType !=null){
                 if (mediaType.isCompatibleWith(MediaType.APPLICATION_JSON)){
-                    return Mono.just(s);
+                    Map<String,Object> map = objectMapper.readValue(s, new TypeReference<Map<String, Object>>() {});
+                    String url = (String)map.get("url");
+                    if (StringUtils.isNotBlank(url)) {
+                        String replace = url.replace("10.104.1.206", "www.congco.com");
+                        map.put("url",replace);
+                    }
+                    return Mono.just(objectMapper.writeValueAsString(map));
                 }
             }
             // 取得;
-            log.info("s===========>{}",s);
             return Mono.just(s);
         } catch (Exception ex) {
             log.error("2. json process fail", ex);

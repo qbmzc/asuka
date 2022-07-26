@@ -19,7 +19,7 @@ import java.util.Locale;
 public class ModifyResponseBodyFilter {
 
 
-    private final static String uri="http://127.0.0.1:12001";
+    private final static String uri="lb://asuka-service";
     @Bean
     public RouteLocator routeLocator(RouteLocatorBuilder builder,ObjectMapper objectMapper) {
         log.info("修改响应值");
@@ -27,7 +27,7 @@ public class ModifyResponseBodyFilter {
                 .route("rewrite_response_upper", r -> r.path("/asuka/**")
                         .filters(f -> f
                                 .modifyResponseBody(String.class, String.class,
-                                (exchange, s) -> Mono.just(s))).uri(uri))
+                               new ResponseBodyRewrite(objectMapper))).uri(uri))
                 .build();
 
     }
