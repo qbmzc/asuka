@@ -1,0 +1,14 @@
+server:
+  port: 12004
+spring:
+  application:
+    name: asuka-client
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:12000/eureka
+feign:
+  circuitbreaker:
+    enabled: true
