@@ -27,7 +27,7 @@ public class AsukaClientApplication {
 	@Bean
 	public Customizer<Resilience4JCircuitBreakerFactory> defaultCustomizer() {
 		return factory -> factory.configureDefault(id -> new Resilience4JConfigBuilder(id)
-				.timeLimiterConfig(TimeLimiterConfig.custom().timeoutDuration(Duration.ofSeconds(4)).build())
+				.timeLimiterConfig(TimeLimiterConfig.custom().timeoutDuration(Duration.ofSeconds(25)).build())
 				.circuitBreakerConfig(CircuitBreakerConfig.ofDefaults())
 				.build());
 	}

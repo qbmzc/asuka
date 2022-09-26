@@ -12,12 +12,12 @@ import org.springframework.stereotype.Service;
 public class ClientService {
 
 
-
+    @Qualifier("com.cong.asukaclient.third.AsukaService")
     @Autowired
-    private AsukaClientWithFactory asukaService;
+    private AsukaService asukaService;
 
     public String test(){
         log.info("Client-service");
-        return asukaService.test();
+        return asukaService.getTest();
     }
 }

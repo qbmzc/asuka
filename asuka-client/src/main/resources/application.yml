@@ -12,3 +12,9 @@ eureka:
 feign:
   circuitbreaker:
     enabled: true
+  client:
+    config:
+      default:
+        connectTimeout: 20000
+        readTimeout: 20000
+
