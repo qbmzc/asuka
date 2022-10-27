@@ -18,8 +18,13 @@ public class ClientController {
      *
      * @return
      */
-    @GetMapping
+    @GetMapping("test")
     public String test(){
         return clientService.test();
+    }
+
+    @GetMapping("file")
+    public String upload(){
+        return clientService.upload();
     }
 }
