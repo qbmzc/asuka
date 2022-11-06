@@ -35,7 +35,7 @@ public class TestController {
     @PostMapping("file")
     public String upload(@RequestPart("file")MultipartFile multipartFile) throws IOException {
         log.info("file  {}",multipartFile.getOriginalFilename());
-        FileCopyUtils.copy(multipartFile.getInputStream(), Files.newOutputStream(Paths.get("/Users/cong/Downloads/a.tmp")));
+        FileCopyUtils.copy(multipartFile.getInputStream(), Files.newOutputStream(Paths.get("/home/cong/Downloads/a.tmp")));
         return "success";
     }
 }

@@ -33,10 +33,9 @@ public class ClientService {
     }
 
     public String upload() {
-        File file = new File("/Users/cong/Downloads/a.docx");
+        File file = new File("/home/cong/Downloads/评价胃肠超声诊断助显剂安全性和有效性的多中心、前瞻性、随机对照临床研究-结题质控-器械临床试验质量检查记录表-2022-09-30.docx");
         MultipartFile multipartFile = getMultipartFile(file);
-        String upload = this.asukaService.upload(multipartFile);
-        return upload;
+        return this.asukaService.upload(multipartFile);
     }
 
     /**
